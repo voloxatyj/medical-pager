@@ -1,11 +1,11 @@
 const { connect } = require('getstream');
 const bcrypt = require('bcrypt');
-const stream_chat = require('stream-chat');
+const stream_chat = require('stream-chat').StreamChat;
 const crypto = require('crypto');
 
-const { api_key, api_secret, app_id } = require('../config');
+const { api_key, api_secret, app_id } = require('../config/config');
 
-const signup = (req, res) => {
+const signup = async (req, res) => {
 	try {
 		const { fullName, userName, password, phoneNumber } = req.body;
 
@@ -24,7 +24,7 @@ const signup = (req, res) => {
 	}
 };
 
-const login = () => {
+const login = async () => {
 	try {
 		const { userName, password } = req.body;
 
