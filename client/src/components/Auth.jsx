@@ -9,7 +9,7 @@ const cookies = new Cookies();
 
 const initialState = {
 	fullName: '',
-	userName: '',
+	username: '',
 	phoneNumber: '',
 	avatarURL: '',
 	password: '',
@@ -31,14 +31,14 @@ const Auth = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const { fullName, userName, password, phoneNumber, avatarURL } = form;
+		const { username, password, phoneNumber, avatarURL } = form;
 
-		const { data: { token, userId, hashedPassword } } = await axios.post(`${server_host}:${server_port}/auth/${isSignUp ? 'signup' : 'login'}`, {
-			userName, password, fullName, phoneNumber, avatarURL
+		const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${server_host}:${server_port}/auth/${isSignUp ? 'signup' : 'login'}`, {
+			username, password, fullName: form.fullName, phoneNumber, avatarURL
 		});
 
 		cookies.set('token', token);
-		cookies.set('username', userName);
+		cookies.set('username', username);
 		cookies.set('fullName', fullName);
 		cookies.set('userId', userId);
 
@@ -70,9 +70,9 @@ const Auth = () => {
 							</div>
 						)}
 						<div className="auth__form-container_fields-content_input">
-								<label htmlFor="userName">User Name</label>
+								<label htmlFor="username">User Name</label>
 								<input
-									name="userName"
+									name="username"
 									type="text"
 									placeholder="User Name"
 									onChange={handleChange}
@@ -94,7 +94,7 @@ const Auth = () => {
 									<label htmlFor="avatarURL">avatar URL</label>
 									<input
 										name="avatarURL"
-										type="number"
+										type="text"
 										placeholder="Avatar URL"
 										onChange={handleChange}
 										required

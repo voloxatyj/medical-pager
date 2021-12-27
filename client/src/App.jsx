@@ -16,7 +16,7 @@ const client = StreamChat.getInstance(api_key_stream_chat);
 if(authToken) {
 	client.connectUser({
 		 id : cookies.get('userId'),
-		 name : cookies.get('userName'),
+		 name : cookies.get('username'),
 		 fullName : cookies.get('fullName'),
 		 phoneNumber : cookies.get('phoneNumber'),
 		 image : cookies.get('avatarURL'),
