@@ -29,16 +29,16 @@ const CreateChannel = ({ createType, setIsCreating }) => {
 		e.preventDefault();
 
 		try {
-			const newCahnnel = await client.channel( createType, channelName, {
-				name: channelName, members: setSelectedUsers
+			const newChannel = await client.channel( createType, channelName, {
+				name: channelName, members: selectedUsers
 			});
 
-			await newCahnnel.watch();
+			await newChannel.watch();
 
 			setChannelName('');
 			setIsCreating(false);
 			setSelectedUsers([client.userID]);
-			setActiveChannel(newCahnnel);
+			setActiveChannel(newChannel);
 		} catch (error) {
 			console.log(error);
 		}

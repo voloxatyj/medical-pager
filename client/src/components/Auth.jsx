@@ -79,6 +79,7 @@ const Auth = () => {
 									required
 								/>
 							</div>
+							{isSignUp && (
 							<div className="auth__form-container_fields-content_input">
 								<label htmlFor="phoneNumber">phone Number</label>
 								<input
@@ -89,6 +90,7 @@ const Auth = () => {
 									required
 								/>
 							</div>
+							)}
 							{isSignUp && (
 								<div className="auth__form-container_fields-content_input">
 									<label htmlFor="avatarURL">avatar URL</label>

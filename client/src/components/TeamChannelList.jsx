@@ -29,14 +29,14 @@ const TeamChannelList = ({ children, error = false, loading, type, isCreating, s
 				<p className="team-channel-list__header__title">
 					{ type === 'team' ? 'Channels' : 'Direct Messages' }
 				</p>
-			<AddChannel 
-				type={type === 'team' ? 'team' : 'messaging'}
-				isCreating={isCreating}
-				setIsCreating={setIsCreating}
-				setCreateType={setCreateType}
-				setIsEditing={setIsEditing}
-				setToggleContainer={setToggleContainer}
-			/>
+				<AddChannel 
+					type={type === 'team' ? 'team' : 'messaging'}
+					isCreating={isCreating}
+					setIsCreating={setIsCreating}
+					setCreateType={setCreateType}
+					setIsEditing={setIsEditing}
+					setToggleContainer={setToggleContainer}
+				/>
 			</div>
 			{children}
 		</div>

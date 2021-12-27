@@ -10,6 +10,7 @@ const ListContainer = ({ children }) => {
 				<p>User</p>
 				<p>Invite</p>
 			</div>
+			{children}
 		</div>
 	)
 };
@@ -30,7 +31,7 @@ const UserItem = ({ user, setSelectedUsers }) => {
 	return (
 		<div className="user-item__wrapper" onClick={handleSelected}>
 			<div className="user-item__name-wrapper">
-				<Avatar image={user.image} name={user.fullName || user.id} size={32} />
+				<Avatar image={user?.image} name={user.fullName || user.id} size={32} />
 				<p className="user-item__name">{user.fullName || user.id}</p>
 			</div>
 			{selected ? <InviteIcon /> : <div className="user-item__invite-empty" />}
@@ -48,12 +49,16 @@ const UserList = ({ setSelectedUsers }) => {
 	useEffect(() => {
 		const getUsers = async () => {
 			if (loading) return;
+
+			setLoading(true);
+
 			try {
 				const response = await client.queryUsers(
 					{ id: { $ne: client.userID } },
 					{ id: 1 },
-					{ limit: 0 }
+					{ limit: 8 }
 				);
+
 				if (response.users.length) {
 					setUsers(response.users);
 				} else {
@@ -95,7 +100,7 @@ const UserList = ({ setSelectedUsers }) => {
 					Loading users...
 				</div> : (
 					users?.map((user, i) => (
-						<UserItem index={i} user={user} setSelectedUsers={setSelectedUsers} />
+						<UserItem index={i} key={user.id} user={user} setSelectedUsers={setSelectedUsers} />
 					))
 				)}
 			</ListContainer>
