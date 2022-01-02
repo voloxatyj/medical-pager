@@ -1,21 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const { twilio_account_sid, twilio_auth_token, messaging_service_sid } = require('./config/config');
+const { twilio_account_sid, twilio_auth_token, messaging_service_sid, port } = require('./config/config');
 
 const authRoutes = require('./routes/auth.js');
+console.log( twilio_account_sid, twilio_auth_token, messaging_service_sid, port);
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+const app = express(); 
 
 const twilioClient = require('twilio')(twilio_account_sid, twilio_auth_token);
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-
-app.get('/', (req, res) => {
-	res.send('Hello World!');
-});
 
 app.post('/', (req, res) => {
 	const { message, user: sender, type, members } = req.body;
@@ -42,4 +38,4 @@ app.post('/', (req, res) => {
 
 app.use('/auth', authRoutes);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));

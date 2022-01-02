@@ -10,5 +10,6 @@ config.app_dir = process.cwd();
 config.twilio_account_sid = process.env.TWILIO_ACCOUNT_SID;
 config.twilio_auth_token = process.env.TWILIO_AUTH_TOKEN;
 config.messaging_service_sid = process.env.MESSAGING_SERVICE_SID;
+config.port = process.env.PORT || 5000;
 
 module.exports = config;
